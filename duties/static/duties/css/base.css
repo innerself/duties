@@ -1,0 +1,11 @@
+body {
+  margin: 0 40px;
+  /*margin: 40px;*/
+  font-family: 'Open Sans', 'sans-serif';
+}
+
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 100px auto 30px;
+}
