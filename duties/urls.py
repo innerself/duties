@@ -4,5 +4,7 @@ from . import views
 app_name = 'duties'
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('calendar/', views.calendar, name='calendar'),
 ]

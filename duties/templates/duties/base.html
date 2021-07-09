@@ -8,7 +8,14 @@
 </head>
 <body>
 <div class="wrapper">
-  <header class="header">logo</header>
+  <header class="header">
+    {% if user.is_authenticated %}
+      <form action="/logout/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+      </form>
+    {% endif %}
+  </header>
   {% block main %}{% endblock main %}
   <footer class="footer">Sergey Petrin</footer>
 </div>
