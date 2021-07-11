@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <title>Duties</title>
   <link rel="stylesheet" type="text/css" href="{% static 'duties/css/base.css' %}">
+  {% block extrahead %}{% endblock extrahead %}
 </head>
 <body>
-<div class="wrapper">
+<div class="page-wrapper">
   <header class="header">
     {% if user.is_authenticated %}
       <form action="/logout/" method="post">

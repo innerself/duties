@@ -1,4 +1,8 @@
 {% extends 'duties/base.html' %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
+{% endblock extrahead %}
 {% block main %}
   <div class="calendar-wrapper">
     {{ calendar|safe }}

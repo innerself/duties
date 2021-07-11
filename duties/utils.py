@@ -1,8 +1,9 @@
 from calendar import Calendar
+from calendar import day_abbr as day_num_to_name
+from calendar import month_name as month_num_to_name
 from collections import namedtuple
 
-
-Day = namedtuple(
+CalendarDay = namedtuple(
     'CalendarDay',
     ['date', 'is_in_current_month', 'day_num', 'weekday'],
 )
@@ -15,6 +16,7 @@ class DutyCalendar:
 
         # TODO Prettify HTML properly
         indent = 0
+        html_calendar.append(f'<div class="year-num">{year}</div>')
         html_calendar.append(f'{" " * indent}<div id="{year}" class="year">')
         html_calendar.extend([self._format_month(month, indent + 4) for month in raw_calendar])
         html_calendar.append('</div>')
@@ -22,11 +24,14 @@ class DutyCalendar:
         return ''.join(html_calendar)
 
     def _format_month(self, month, base_indent):
+        month_num, month_data = month
         indent = base_indent + 2
         html_month = list()
 
         html_month.append(f'\n{" " * indent}<div class="month">')
-        html_month.extend([self._format_week(week, indent) for week in month])
+        html_month.append(f'<div class="month-name">{month_num_to_name[month_num]}</div>')
+        html_month.append(f'<div class="month-weekdays">{self._format_weekdays()}</div>')
+        html_month.extend([self._format_week(week, indent) for week in month_data])
         html_month.append(f'\n{" " * indent}</div>')
 
         return ''.join(html_month)
@@ -62,12 +67,16 @@ class DutyCalendar:
             in calendar_data_sequence
         ]
 
-    def _generate_month(self, month_num, month_dates, month_days):
-        return [
+    def _generate_month(self, month_num: int, month_dates, month_days):
+        month = list()
+        month.append(month_num)
+        month.append([
             self._generate_week(week_dates, week_days)
             for week_dates, week_days in
             zip(month_dates, month_days)
-        ]
+        ])
+
+        return month
 
     def _generate_week(self, week_dates, week_days):
         return [
@@ -77,9 +86,15 @@ class DutyCalendar:
         ]
 
     def _generate_day(self, dates_day, days_day):
-        return Day(
+        return CalendarDay(
             date=dates_day,
             is_in_current_month=bool(days_day[0]),
             day_num=days_day[0],
             weekday=days_day[1],
         )
+
+    def _format_weekdays(self):
+        return ''.join([f'<div class="weekday">{day_num_to_name[num]}</div>'
+            for num
+            in range(7)
+        ])

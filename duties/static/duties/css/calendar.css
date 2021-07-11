@@ -1,0 +1,60 @@
+.calendar-wrapper {
+  width: 50%;
+  display: grid;
+  justify-self: center;
+  margin-bottom: 100px;
+}
+
+.year-num {
+  display: flex;
+  justify-self: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.year {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr auto;
+  grid-gap: 5em;
+}
+
+.month-name {
+  display: flex;
+  justify-self: center;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.month {
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 1em;
+}
+
+.month-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: small;
+}
+
+.weekday {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 1em;
+}
+
+.day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
