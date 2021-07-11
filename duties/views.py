@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import LoginForm
+from .utils import DutyCalendar
 
 
 def login_view(request):
@@ -27,7 +28,8 @@ def login_view(request):
 
 
 def calendar(request):
-    return render(request, 'duties/calendar.html')
+    calendar_ = DutyCalendar().draw_calendar(2021)
+    return render(request, 'duties/calendar.html', {'calendar': calendar_})
 
 
 def logout_view(request):
