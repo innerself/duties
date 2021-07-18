@@ -2,7 +2,6 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 100px auto 30px;
-
   background-image: url("../images/background_login.jpg");
   background-size: cover;
 }
@@ -19,7 +18,6 @@
 .logo {
   width: 100%;
   margin-top: 50px;
-  /*margin-left: 60%;*/
   margin-bottom: 50px;
 }
 
@@ -30,16 +28,22 @@
 
 
 .login-form-wrapper {
-  /*margin-left: 60%;*/
   width: 100%;
   align-self: baseline;
-  /*height: 22%;*/
   background-color: #f6f7f9;
-  border-radius: 3%;
+  border-radius: 15px;
 }
 
 .login-form {
   padding: 20px;
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #41b3d3;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(65, 179, 211, 0.25);
 }
 
 .login-button {
@@ -49,8 +53,19 @@
   border-color: #61d2dc;
 }
 
+.login-button:focus {
+  background-color: #61d2dc;
+  border-color: #61d2dc;
+  box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
+}
+
 .login-button:hover {
-  color: #fff;
   background-color: #41b3d3;
   border-color: #41b3d3;
+}
+
+.login-button:active, .login-button:active:focus {
+  background-color: #41b3d3;
+  border-color: #41b3d3;
+  box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
 }

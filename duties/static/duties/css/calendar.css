@@ -3,6 +3,7 @@
   display: grid;
   justify-self: center;
   margin-bottom: 100px;
+  background-color: #edeeef;
 }
 
 .year-num {
@@ -33,6 +34,9 @@
   display: grid;
   grid-template-rows: auto;
   grid-row-gap: 1em;
+  background-color: #f6f7f9;
+  border-radius: 15px;
+
 }
 
 .month-weekdays {
