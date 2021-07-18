@@ -22,6 +22,8 @@ def login_view(request):
             else:
                 print()
     else:
+        if request.user.is_authenticated:
+            return redirect('duties:calendar')
         form = LoginForm()
 
     return render(request, 'duties/login.html', {'form': form})

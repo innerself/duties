@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'duties',
+    'django_bootstrap5',
 ]
 
 if DEBUG:

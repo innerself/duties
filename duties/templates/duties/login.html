@@ -1,10 +1,32 @@
 {% extends 'duties/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" href="{% static 'duties/css/login.css' %}">
+{% endblock extrahead %}
 {% block main %}
+  <div class="page-wrapper">
+  <header class="header">
+    {% if user.is_authenticated %}
+      <form action="/logout/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+      </form>
+    {% endif %}
+  </header>
   <div class="login-page">
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="login">
-  </form>
+    <div class="logo">
+      <img class="logo-image" src="{% static "duties/images/logo_login.png" %}" alt="site-logo">
+    </div>
+    <div class="login-form-wrapper">
+      <form class="login-form" action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button extra_classes="login-button" button_type="submit" content="login" %}
+      </form>
+    </div>
   </div>
+  <footer class="footer"></footer>
+</div>
+
 {% endblock main %}

@@ -1,24 +1,16 @@
 {% load static %}
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Duties</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
   <link rel="stylesheet" type="text/css" href="{% static 'duties/css/base.css' %}">
   {% block extrahead %}{% endblock extrahead %}
 </head>
 <body>
-<div class="page-wrapper">
-  <header class="header">
-    {% if user.is_authenticated %}
-      <form action="/logout/" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Logout">
-      </form>
-    {% endif %}
-  </header>
   {% block main %}{% endblock main %}
-  <footer class="footer">Sergey Petrin</footer>
-</div>
 </body>
 </html>
