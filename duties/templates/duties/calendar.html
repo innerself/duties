@@ -1,11 +1,37 @@
 {% extends 'duties/base.html' %}
-{% load static %}
-{% load django_bootstrap5 %}
+{% load static django_bootstrap5 calendar_filters %}
 {% block extrahead %}
-    <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
 {% endblock extrahead %}
 {% block main %}
   <div class="calendar-wrapper">
-    {{ calendar|safe }}
+    {% for year_num, months in calendar.items %}
+      <div class="year-num">{{ year_num }}</div>
+      <div id="{{ year_num }}" class="year">
+        {% for month in months %}
+          <div class="month">
+            {% with month_num=forloop.counter %}
+              <div class="month-name">{{ month_num|month_name }}</div>
+              <div class="month-weekdays">
+                {% for weekday in weekheader %}
+                  <div class="weekday">{{ weekday }}</div>
+                {% endfor %}
+              </div>
+              {% for week in month %}
+                <div class="week">
+                  {% for day in week %}
+                    {% if day.month == month_num %}
+                      <div id="{{ day.isoformat }}" class="day">{{ day.day }}</div>
+                    {% else %}
+                      <div class="day">&nbsp</div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            {% endwith %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
   </div>
 {% endblock main %}

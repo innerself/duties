@@ -1,7 +1,10 @@
+import calendar
+
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+
 from .forms import LoginForm
-from .utils import DutyCalendar
+from .utils import generate_calendar
 
 
 def login_view(request):
@@ -29,9 +32,16 @@ def login_view(request):
     return render(request, 'duties/login.html', {'form': form})
 
 
-def calendar(request):
-    calendar_ = DutyCalendar().draw_calendar(2021)
-    return render(request, 'duties/calendar.html', {'calendar': calendar_})
+def calendar_view(request):
+    calendar_data = generate_calendar([2021])
+    weekheader = calendar.weekheader(3).split()
+
+    payload = {
+        'calendar': calendar_data,
+        'weekheader': weekheader,
+    }
+
+    return render(request, 'duties/calendar.html', payload)
 
 
 def logout_view(request):
