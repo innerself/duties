@@ -1,6 +1,7 @@
 import calendar
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import LoginForm
@@ -32,6 +33,7 @@ def login_view(request):
     return render(request, 'duties/login.html', {'form': form})
 
 
+@login_required
 def calendar_view(request):
     calendar_data = generate_calendar([2021])
     weekheader = calendar.weekheader(3).split()

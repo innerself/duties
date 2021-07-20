@@ -139,3 +139,4 @@ INTERNAL_IPS = [
 ]
 
 STATIC_ROOT = config('STATIC_ROOT', cast=str, default='/var/www/')
+LOGIN_URL = '/'
