@@ -1,5 +1,8 @@
 body {
+  display: grid;
+  grid-template-rows: 1fr 19fr;
   font-family: 'Open Sans', 'sans-serif';
+  background-color: #edeeef;
 }
 
 

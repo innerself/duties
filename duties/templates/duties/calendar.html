@@ -3,6 +3,9 @@
 {% block extrahead %}
   <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
 {% endblock extrahead %}
+{% block header %}
+  <div class="header-wrapper">logo</div>
+{% endblock %}
 {% block main %}
   <div class="calendar-wrapper">
     {% for year_num, months in calendar.items %}
@@ -14,6 +17,7 @@
               <div class="month-name">{{ month_num|month_name }}</div>
               <div class="month-weekdays">
                 {% for weekday in weekheader %}
+                  {# TODO Sunday weekday should be also red #}
                   <div class="weekday">{{ weekday }}</div>
                 {% endfor %}
               </div>
@@ -21,7 +25,11 @@
                 <div class="week">
                   {% for day in week %}
                     {% if day.month == month_num %}
-                      <div id="{{ day.isoformat }}" class="day">{{ day.day }}</div>
+                      {% if day.isoweekday == 7 %}  {# TODO Can this be done more accurate? #}
+                        <div id="{{ day.isoformat }}" class="day sunday">{{ day.day }}</div>
+                      {% else %}
+                        <div id="{{ day.isoformat }}" class="day">{{ day.day }}</div>
+                      {% endif %}
                     {% else %}
                       <div class="day">&nbsp</div>
                     {% endif %}

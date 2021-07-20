@@ -1,4 +1,9 @@
+.header-wrapper {
+  grid-row: 1;
+}
+
 .calendar-wrapper {
+  grid-row: 2;
   width: 50%;
   display: grid;
   justify-self: center;
@@ -36,7 +41,7 @@
   grid-row-gap: 1em;
   background-color: #f6f7f9;
   border-radius: 15px;
-
+  padding: 5px 25px 20px 25px;
 }
 
 .month-weekdays {
@@ -61,4 +66,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sunday {
+  color: crimson;
 }
