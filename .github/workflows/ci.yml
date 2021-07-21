@@ -1,20 +1,22 @@
 name: CI
 
-on: [push]
+on: [ push ]
 
 jobs:
   deploy:
-#    if: github.ref == 'refs/heads/master'
-    runs-on: [ubuntu-latest]
+    #    if: github.ref == 'refs/heads/master'
+    runs-on: [ ubuntu-latest ]
     steps:
       - uses: actions/checkout@v2
       - name: Pull from server
         uses: appleboy/ssh-action@master
+        env:
+          GIT_SSH_COMMAND: ${{ secrets.GIT_SSH_COMMAND }}
         with:
           host: ${{ secrets.SERVER_NAME }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.KEY }}
-          env:
-            GIT_SSH_COMMAND: ${{ secrets.GIT_SSH_COMMAND }}
+          envs: GIT_SSH_COMMAND
+#            GIT_SSH_COMMAND: ${{ secrets.GIT_SSH_COMMAND }}
           script: cd ${{ secrets.PROJECT_PATH }} && git pull
 #          script: cd ${{ secrets.PROJECT_PATH }} &&
