@@ -18,5 +18,5 @@ jobs:
           key: ${{ secrets.KEY }}
           envs: GIT_SSH_COMMAND
 #            GIT_SSH_COMMAND: ${{ secrets.GIT_SSH_COMMAND }}
-          script: cd ${{ secrets.PROJECT_PATH }} && ${{ GIT_SSH_COMMAND }}
-#          script: cd ${{ secrets.PROJECT_PATH }} &&
+          script: cd ${{ secrets.PROJECT_PATH }} && ${{ secrets.GIT_SSH_COMMAND }}
+#          script: cd ${{ secrets.PROJECT_PATH }} && git pull ${{  }}
