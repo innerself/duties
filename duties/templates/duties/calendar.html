@@ -4,7 +4,14 @@
   <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
 {% endblock extrahead %}
 {% block header %}
-  <div class="header-wrapper">logo</div>
+  <div class="header-wrapper">
+    <div class="logo-wrapper">
+      <img class="logo-image" src="{% static "duties/images/logo_login.png" %}" alt="logo">
+    </div>
+    <div class="profile-control-wrapper">
+      {% bootstrap_button extra_classes="logout-button" button_type="link" content="logout" href="/logout" %}
+    </div>
+  </div>
 {% endblock %}
 {% block main %}
   <div class="calendar-wrapper">
@@ -18,7 +25,11 @@
               <div class="month-weekdays">
                 {% for weekday in weekheader %}
                   {# TODO Sunday weekday should be also red #}
-                  <div class="weekday">{{ weekday }}</div>
+                  {% if weekday == 'Sun' %}
+                    <div class="weekday sunday">{{ weekday }}</div>
+                  {% else %}
+                    <div class="weekday">{{ weekday }}</div>
+                  {% endif %}
                 {% endfor %}
               </div>
               {% for week in month %}

@@ -1,12 +1,66 @@
 .header-wrapper {
   grid-row: 1;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 60%;
+  justify-self: center;
 }
+
+.logo-wrapper {
+  height: 100%;
+  width: 17%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-image {
+  height: 100%;
+  display: flex;
+  padding: 20px 0;
+}
+
+.profile-control-wrapper {
+  height: 100%;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-button {
+  height: fit-content;
+  color: #3b2b2f;
+  /*color: #fff;*/
+  background-color: rgba(0, 0, 0, 0);
+  /*background-color: #61d2dc;*/
+  border-color: #61d2dc;
+}
+
+.logout-button:focus {
+  background-color: #61d2dc;
+  border-color: #61d2dc;
+  box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
+}
+
+.logout-button:hover {
+  background-color: #41b3d3;
+  border-color: #41b3d3;
+}
+
+.logout-button:active, .logout-button:active:focus {
+  background-color: #41b3d3;
+  border-color: #41b3d3;
+  box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
+}
+
 
 .calendar-wrapper {
   grid-row: 2;
-  width: 50%;
+  width: 100%;
   display: grid;
   justify-self: center;
+  justify-content: center;
   margin-bottom: 100px;
   background-color: #edeeef;
 }
@@ -47,13 +101,15 @@
 .month-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 1em;
   font-size: small;
 }
 
 .weekday {
   display: flex;
-  justify-self: center;
+  justify-content: center;
   align-items: center;
+  width: 80px;
 }
 
 .week {
@@ -66,8 +122,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80px;
 }
 
 .sunday {
   color: crimson;
+}
+
+.weekday, .day {
+  width: 25px;
 }
