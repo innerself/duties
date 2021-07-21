@@ -19,4 +19,4 @@ jobs:
             git pull
             ${{ secrets.POETRY_EXEC }} install
             ${{ secrets.POETRY_EXEC }} run python manage.py collectstatic --no-input
-            sudo service duties restart
+            sudo -S service duties restart
