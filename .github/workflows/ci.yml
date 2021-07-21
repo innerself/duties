@@ -14,4 +14,5 @@ jobs:
           host: ${{ secrets.SERVER_NAME }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.KEY }}
-          script: cd ${{ secrets.PROJECT_PATH }} && git pull
+#          script: cd ${{ secrets.PROJECT_PATH }} && git pull
+          script: cd ${{ secrets.PROJECT_PATH }} && pwd && whoami
