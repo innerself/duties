@@ -17,6 +17,6 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_PATH }}
             git pull
-            poetry install
-            poetry run python manage.py collectstatic
+            ${{ secrets.POETRY_EXEC }} install
+            ${{ secrets.POETRY_EXEC }} run python manage.py collectstatic
             sudo service duties restart
