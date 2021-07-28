@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'duties',
-    'django_bootstrap5',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 if DEBUG:
@@ -140,3 +141,6 @@ INTERNAL_IPS = [
 
 STATIC_ROOT = config('STATIC_ROOT', cast=str, default='/var/www/')
 LOGIN_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

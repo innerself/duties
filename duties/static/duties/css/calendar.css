@@ -54,12 +54,18 @@
   box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
 }
 
-.calendar-wrapper {
+main {
   grid-row: 2;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.calendar-wrapper {
+  grid-column: 1;
   width: 100%;
   display: grid;
   justify-self: center;
-  justify-content: center;
+  justify-content: flex-end;
   margin-bottom: 100px;
   background-color: #edeeef;
 }
@@ -69,6 +75,7 @@
   justify-self: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-right: 80px;
   font-weight: bold;
   font-size: larger;
   cursor: default;
@@ -79,6 +86,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr auto;
   grid-gap: 5em;
+  margin-right: 80px;
 }
 
 .month-name {
@@ -147,4 +155,55 @@
 .empty-day, .empty-day:hover {
   border-bottom: none;
   transition: none;
+}
+
+.control-panel-wrapper {
+  grid-column: 2;
+  position: sticky;
+  top: 110px;
+  background-color: transparent;
+  height: fit-content;
+  margin-top: 60px;
+}
+
+.persons-list {
+  background-color: transparent;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-column-gap: 5px;
+  /*justify-items: center;*/
+  /*align-items: center;*/
+}
+
+.person-button {
+  grid-column: 2;
+  background-color: transparent;
+  width: 100%;
+  color: #272b2f;
+  display: flex;
+  justify-content: center;
+  align-self: end;
+  border: none;
+  border-radius: unset;
+  border-bottom: 1px solid transparent;
+  /*border-bottom: 1px solid rgba(59, 43, 47, 0.2);*/
+  transition: border-bottom-color 0.8s;
+}
+
+.person-button:hover {
+  border-bottom: 1px solid rgba(59, 43, 47, 1);
+  background-color: transparent;
+  color: inherit;
+  transition: border-bottom-color 0.3s;
+}
+
+.button-switch-indicator {
+  grid-column: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(59, 43, 47, 0.2);
+  justify-self: center;
+  align-self: center;
 }

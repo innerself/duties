@@ -1,20 +1,20 @@
 {% load static %}
-{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Duties</title>
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
-  <link rel="stylesheet" type="text/css" href="{% static 'duties/css/base.css' %}">
+  <link href="{% static 'duties/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'duties/css/base.css' %}" rel="stylesheet" type="text/css">
   {% block extrahead %}{% endblock extrahead %}
 </head>
 <body>
 {% block header %}{% endblock %}
 {% block main %}{% endblock %}
 
-<script> </script>
+<script src="{% static 'duties/js/popper.min.js' %}"></script>
+<script src="{% static 'duties/js/bootstrap.min.js' %}"></script>
+{#<script> </script>#}
 
 </body>
 </html>

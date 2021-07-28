@@ -1,5 +1,5 @@
 {% extends 'duties/base.html' %}
-{% load static django_bootstrap5 calendar_filters %}
+{% load static calendar_filters %}
 {% block extrahead %}
   <link rel="stylesheet" type="text/css" href="{% static 'duties/css/calendar.css' %}">
 {% endblock extrahead %}
@@ -9,48 +9,67 @@
       <img class="logo-image" src="{% static "duties/images/logo_login.png" %}" alt="logo">
     </div>
     <div class="profile-control-wrapper">
-      {% bootstrap_button extra_classes="logout-button" button_type="link" content="logout" href="/logout" %}
+      <a href="{% url 'duties:logout' %}" class="btn logout-button">logout</a>
     </div>
   </div>
 {% endblock %}
 {% block main %}
-  <div class="calendar-wrapper">
-    {% for year_num, months in calendar.items %}
-      <div class="year-num">{{ year_num }}</div>
-      <div id="{{ year_num }}" class="year">
-        {% for month in months %}
-          <div class="month">
-            {% with month_num=forloop.counter %}
-              <div class="month-name">{{ month_num|month_name }}</div>
-              <div class="month-weekdays">
-                {% for weekday in weekheader %}
-                  {# TODO Sunday weekday should be also red #}
-                  {% if weekday == 'Sun' %}
-                    <div class="weekday sunday">{{ weekday }}</div>
-                  {% else %}
-                    <div class="weekday">{{ weekday }}</div>
-                  {% endif %}
-                {% endfor %}
-              </div>
-              {% for week in month %}
-                <div class="week">
-                  {% for day in week %}
-                    {% if day.month == month_num %}
-                      {% if day.isoweekday == 7 %}  {# TODO Can this be done more accurate? #}
-                        <div id="{{ day.isoformat }}" class="day sunday">{{ day.day }}</div>
-                      {% else %}
-                        <div id="{{ day.isoformat }}" class="day">{{ day.day }}</div>
-                      {% endif %}
+  <main>
+    <div class="calendar-wrapper">
+      {% for year_num, months in calendar.items %}
+        <div class="year-num">{{ year_num }}</div>
+        <div id="{{ year_num }}" class="year">
+          {% for month in months %}
+            <div class="month">
+              {% with month_num=forloop.counter %}
+                <div class="month-name">{{ month_num|month_name }}</div>
+                <div class="month-weekdays">
+                  {% for weekday in weekheader %}
+                    {# TODO Sunday weekday should be also red #}
+                    {% if weekday == 'Sun' %}
+                      <div class="weekday sunday">{{ weekday }}</div>
                     {% else %}
-                      <div class="day empty-day">&nbsp</div>
+                      <div class="weekday">{{ weekday }}</div>
                     {% endif %}
                   {% endfor %}
                 </div>
-              {% endfor %}
-            {% endwith %}
-          </div>
+                {% for week in month %}
+                  <div class="week">
+                    {% for day in week %}
+                      {% if day.month == month_num %}
+                        {% if day.isoweekday == 7 %}  {# TODO Can this be done more accurate? #}
+                          <div id="{{ day.isoformat }}" class="day sunday">{{ day.day }}</div>
+                        {% else %}
+                          <div id="{{ day.isoformat }}" class="day">{{ day.day }}</div>
+                        {% endif %}
+                      {% else %}
+                        <div class="day empty-day">&nbsp</div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endfor %}
+              {% endwith %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="control-panel-wrapper">
+      <div class="persons-list">
+        {% for person in persons %}
+          <div class="button-switch-indicator"></div>
+          <button id="button-{{ person.user.username }}"  {# TODO Switch this to slug #}
+                  type="button"
+                  class="btn btn-outline-primary person-button"
+                  data-color="{{ person.color }}"
+                  data-state="off"
+                  onclick="toggleUserButton('button-{{ person.user.username }}')">
+            {{ person.user.first_name }}&nbsp{{ person.user.last_name }}
+          </button>
         {% endfor %}
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  </main>
+
+  <script src="{% static 'duties/js/calendar.js' %}"></script>
 {% endblock main %}

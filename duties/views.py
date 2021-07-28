@@ -1,9 +1,12 @@
 import calendar
+from typing import Dict, Union, List
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from . import models
 from .forms import LoginForm
 from .utils import generate_calendar
 
@@ -34,13 +37,25 @@ def login_view(request):
 
 
 @login_required
+def get_users(request, username: str) -> Union[models.Profile, List[models.Profile]]:
+    if username:
+        result = models.Profile.objects.get(user__username=username)
+    else:
+        result = models.Profile.objects.all()
+
+    return result
+
+
+@login_required
 def calendar_view(request):
     calendar_data = generate_calendar([2021])
     weekheader = calendar.weekheader(3).split()
+    persons = models.Profile.objects.all()
 
     payload = {
         'calendar': calendar_data,
         'weekheader': weekheader,
+        'persons': persons,
     }
 
     return render(request, 'duties/calendar.html', payload)

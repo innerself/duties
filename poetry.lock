@@ -10,19 +10,12 @@ python-versions = ">=3.6"
 tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
 
 [[package]]
-name = "beautifulsoup4"
-version = "4.9.3"
-description = "Screen-scraping library"
+name = "codegen"
+version = "1.0"
+description = "Extension to ast that allow ast -> python code generation."
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.dependencies]
-soupsieve = {version = ">1.2", markers = "python_version >= \"3.0\""}
-
-[package.extras]
-html5lib = ["html5lib"]
-lxml = ["lxml"]
 
 [[package]]
 name = "colorama"
@@ -31,6 +24,21 @@ description = "Cross-platform colored terminal text."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "crispy-bootstrap5"
+version = "0.4"
+description = "Bootstrap5 template pack for django-crispy-forms"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=2.2"
+django-crispy-forms = ">=1.9.2"
+
+[package.extras]
+test = ["pytest", "pytest-django"]
 
 [[package]]
 name = "django"
@@ -50,16 +58,12 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-bootstrap5"
-version = "2.1.1"
-description = "Bootstrap 5 for Django"
+name = "django-crispy-forms"
+version = "1.12.0"
+description = "Best way to have Django DRY forms"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.dependencies]
-beautifulsoup4 = ">=4.8.0"
-Django = ">=2.2"
 
 [[package]]
 name = "django-debug-toolbar"
@@ -106,9 +110,20 @@ dev = ["codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "tox (>=3
 name = "mimesis"
 version = "4.1.3"
 description = "Mimesis: fake data generator."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "patterns"
+version = "0.3"
+description = "Pattern matching for python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+codegen = "*"
 
 [[package]]
 name = "python-decouple"
@@ -125,14 +140,6 @@ description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
 python-versions = "*"
-
-[[package]]
-name = "soupsieve"
-version = "2.2.1"
-description = "A modern CSS selector implementation for Beautiful Soup."
-category = "main"
-optional = false
-python-versions = ">=3.6"
 
 [[package]]
 name = "sqlparse"
@@ -156,29 +163,31 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "44b98260fcfda3fff5dd165a3345fff3536248ded2f316b4549530356f222a92"
+content-hash = "8d6f98a7f420c70882d9d88faff98506cdb4488a9013620d18f2f357990bed88"
 
 [metadata.files]
 asgiref = [
     {file = "asgiref-3.4.1-py3-none-any.whl", hash = "sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214"},
     {file = "asgiref-3.4.1.tar.gz", hash = "sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9"},
 ]
-beautifulsoup4 = [
-    {file = "beautifulsoup4-4.9.3-py2-none-any.whl", hash = "sha256:4c98143716ef1cb40bf7f39a8e3eec8f8b009509e74904ba3a7b315431577e35"},
-    {file = "beautifulsoup4-4.9.3-py3-none-any.whl", hash = "sha256:fff47e031e34ec82bf17e00da8f592fe7de69aeea38be00523c04623c04fb666"},
-    {file = "beautifulsoup4-4.9.3.tar.gz", hash = "sha256:84729e322ad1d5b4d25f805bfa05b902dd96450f43842c4e99067d5e1369eb25"},
+codegen = [
+    {file = "codegen-1.0.tar.gz", hash = "sha256:d14caccc4175903d79bc5ed2890d140163281b1cdff79f3657e963369e79a6ee"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
+crispy-bootstrap5 = [
+    {file = "crispy-bootstrap5-0.4.tar.gz", hash = "sha256:04fad1dd060467278a62a3e5755b6b3dc15d4b1306db1de774a618e8dc5252a5"},
+    {file = "crispy_bootstrap5-0.4-py3-none-any.whl", hash = "sha256:6abe36a804d50d13bd20214e0c067c0b530c03074b64cf87c0cb5762b94c0779"},
+]
 django = [
     {file = "Django-3.2.5-py3-none-any.whl", hash = "sha256:c58b5f19c5ae0afe6d75cbdd7df561e6eb929339985dbbda2565e1cabb19a62e"},
     {file = "Django-3.2.5.tar.gz", hash = "sha256:3da05fea54fdec2315b54a563d5b59f3b4e2b1e69c3a5841dda35019c01855cd"},
 ]
-django-bootstrap5 = [
-    {file = "django-bootstrap5-2.1.1.tar.gz", hash = "sha256:7b1c36dd33a2cc5ceadb4cf948c483efc3d0818953a7ccfbf25249881e2919bc"},
-    {file = "django_bootstrap5-2.1.1-py3-none-any.whl", hash = "sha256:88d3df6866ba82dac5c26122b10f6bc0b1670dba7bd41ca88b25dbf3e0be2906"},
+django-crispy-forms = [
+    {file = "django-crispy-forms-1.12.0.tar.gz", hash = "sha256:d196db62ee8b4fc32d1f9583d0e4be1bb17328b662682c1ecb9fb77bbc0fcf77"},
+    {file = "django_crispy_forms-1.12.0-py3-none-any.whl", hash = "sha256:a3320356c84d0cdc631e1ec7b8908aa0117bc2a5f0ab1d053d33eba08f584808"},
 ]
 django-debug-toolbar = [
     {file = "django-debug-toolbar-3.2.1.tar.gz", hash = "sha256:a5ff2a54f24bf88286f9872836081078f4baa843dc3735ee88524e89f8821e33"},
@@ -195,6 +204,9 @@ loguru = [
 mimesis = [
     {file = "mimesis-4.1.3.tar.gz", hash = "sha256:90f36c21c1bb9944afc17178eb5868b0c85aa1fe49eb04bcbdafafd1ad4ca2ba"},
 ]
+patterns = [
+    {file = "patterns-0.3.tar.gz", hash = "sha256:af8144d8993253661fd3d67d52d84d2f4c5ab77c873b17e7c79dd096e04a3049"},
+]
 python-decouple = [
     {file = "python-decouple-3.4.tar.gz", hash = "sha256:2e5adb0263a4f963b58d7407c4760a2465d464ee212d733e2a2c179e54c08d8f"},
     {file = "python_decouple-3.4-py3-none-any.whl", hash = "sha256:a8268466e6389a639a20deab9d880faee186eb1eb6a05e54375bdf158d691981"},
@@ -202,10 +214,6 @@ python-decouple = [
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
     {file = "pytz-2021.1.tar.gz", hash = "sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da"},
-]
-soupsieve = [
-    {file = "soupsieve-2.2.1-py3-none-any.whl", hash = "sha256:c2c1c2d44f158cdbddab7824a9af8c4f83c76b1e23e049479aa432feb6c4c23b"},
-    {file = "soupsieve-2.2.1.tar.gz", hash = "sha256:052774848f448cf19c7e959adf5566904d525f33a3f8b6ba6f6f8f26ec7de0cc"},
 ]
 sqlparse = [
     {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
