@@ -1,10 +1,7 @@
 from django.contrib import admin
 
-from duties.models import Profile
+from duties.models import Profile, CalendarYear, DutyDate
 
-
-class ProfileAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Profile)
+admin.site.register(CalendarYear)
+admin.site.register(DutyDate)

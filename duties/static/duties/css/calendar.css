@@ -134,27 +134,40 @@ main {
   align-items: center;
   width: 25px;
   height: 25px;
+  border: 1px solid transparent;
   border-bottom: 2px solid transparent;
-  transition: border 0.8s;
+  transition: border-bottom-color 0.8s;
 }
 
 .day:hover {
-  border-bottom: 2px solid #212529;
-  transition: border 0.3s;
+  border-bottom-color: #212529;
+  transition: border-bottom-color 0.3s;
 }
 
 .sunday {
   color: crimson;
-  border-bottom: 2px solid transparent;
+  border-bottom-color: transparent;
 }
 
 .sunday:hover {
-  border-bottom: 2px solid crimson;
+  border-bottom-color: crimson;
 }
 
 .empty-day, .empty-day:hover {
   border-bottom: none;
   transition: none;
+}
+
+.highlighted {
+  border-radius: 5px;
+  border: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: border 0.8s;
+}
+
+.highlighted:hover {
+  border-color: rgba(59, 43, 47, 0.8);
+  transition: border 0.3s;
 }
 
 .control-panel-wrapper {

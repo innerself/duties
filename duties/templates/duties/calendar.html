@@ -63,7 +63,7 @@
                   class="btn btn-outline-primary person-button"
                   data-color="{{ person.color }}"
                   data-state="off"
-                  onclick="toggleUserButton('button-{{ person.user.username }}')">
+                  onclick="toggleUserButton('{{ person.user.username }}')">
             {{ person.user.first_name }}&nbsp{{ person.user.last_name }}
           </button>
         {% endfor %}

@@ -1,10 +1,14 @@
 import calendar
+import json
 from typing import Dict, Union, List
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core import serializers
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.cache import cache_page
 
 from . import models
 from .forms import LoginForm
@@ -37,13 +41,24 @@ def login_view(request):
 
 
 @login_required
-def get_users(request, username: str) -> Union[models.Profile, List[models.Profile]]:
+@cache_page(60 * 15)
+def get_user_duties(request, username):
+    user = models.Profile.objects.get(user__username=username)
+    duties = [str(duty) for duty in user.duties.all()]
+
+    return HttpResponse(json.dumps(duties))
+
+
+@login_required
+def get_users(request, username: str):
     if username:
         result = models.Profile.objects.get(user__username=username)
     else:
         result = models.Profile.objects.all()
 
-    return result
+    data = serializers.serialize('json', result.duties.all())
+
+    return HttpResponse(data)
 
 
 @login_required

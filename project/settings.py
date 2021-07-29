@@ -33,13 +33,13 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=lambda hosts: hosts.sp
 # Application definition
 
 INSTALLED_APPS = [
+    'duties',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'duties',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -88,6 +88,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
     }
 }
 
