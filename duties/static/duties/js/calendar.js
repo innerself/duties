@@ -11,9 +11,10 @@ class UserButton {
   turnOn() {
     this.button.dataset.state = 'on';
     this.indicator.style.backgroundColor = this.color;
+
     fetch('http://127.0.0.1:8000/get/duties/'.concat(this.username).concat('/'))
       .then(response => response.json())
-      .then(data => this.highlight_calendar(data));
+      .then(data => this.highlightCalendar(data));
   }
 
   turnOff() {
@@ -21,7 +22,7 @@ class UserButton {
     this.indicator.style.backgroundColor = 'transparent';
     fetch('http://127.0.0.1:8000/get/duties/'.concat(this.username).concat('/'))
       .then(response => response.json())
-      .then(data => this.clear_calendar(data));
+      .then(data => this.clearCalendar(data));
   }
 
   toggle() {
@@ -34,20 +35,42 @@ class UserButton {
     }
   }
 
-  highlight_calendar(dutyDates) {
+  highlightCalendar(dutyDates) {
     for (const dutyDate of dutyDates) {
       const dateObj = document.getElementById(dutyDate);
       dateObj.style.backgroundColor = this.color;
-      dateObj.classList.toggle('highlighted')
+      dateObj.classList.toggle('highlighted');
+
+      if (this.colorIsDark) {
+        dateObj.style.color = '#f6f7f9';
+        dateObj.style.borderColor = '#edeeef';
+      }
     }
   }
 
-  clear_calendar(dutyDates) {
+  clearCalendar(dutyDates) {
     for (const dutyDate of dutyDates) {
       const dateObj = document.getElementById(dutyDate);
       dateObj.style.backgroundColor = 'transparent';
-      dateObj.classList.toggle('highlighted')
+      dateObj.classList.toggle('highlighted');
+      dateObj.style.color = '#212529';
+      dateObj.style.borderColor = 'rgba(59, 43, 47, 0.8)';
     }
+  }
+
+  get colorIsDark () {
+    const darkness_margin = 186;
+    const color_darkness = this.calcColorDarkness();
+    return color_darkness < darkness_margin
+  }
+
+  calcColorDarkness() {
+    const red = parseInt('0x'.concat(this.color.slice(1, 3)));
+    const green = parseInt('0x'.concat(this.color.slice(3, 5)));
+    const blue = parseInt('0x'.concat(this.color.slice(5, 7)));
+
+    // Formula is from here: https://stackoverflow.com/a/3943023/5726446
+    return red * 0.299 + green * 0.587 + blue * 0.114;
   }
 
   // fetch_duty_dates() {
