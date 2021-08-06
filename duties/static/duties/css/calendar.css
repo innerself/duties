@@ -211,6 +211,10 @@ main {
   transition: border-bottom-color 0.3s;
 }
 
+.person-button:focus, .person-button:active:focus {
+  box-shadow: none;
+}
+
 .button-switch-indicator {
   grid-column: 1;
   width: 20px;

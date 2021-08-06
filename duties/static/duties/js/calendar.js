@@ -54,7 +54,7 @@ class UserButton {
       dateObj.style.backgroundColor = 'transparent';
       dateObj.classList.toggle('highlighted');
       dateObj.style.color = '#212529';
-      dateObj.style.borderColor = 'rgba(59, 43, 47, 0.8)';
+      dateObj.style.borderColor = 'transparent';
     }
   }
 
