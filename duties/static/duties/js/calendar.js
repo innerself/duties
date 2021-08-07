@@ -89,3 +89,27 @@ function toggleUserButton(username) {
   const userButton = new UserButton(username);
   userButton.toggle();
 }
+
+function toggleAllClearButton() {
+  const allClearButton = document.getElementById('button-all-clear');
+  const userDOMButtons = document.querySelectorAll('.person-button:not(.all-clear-button)');
+  const currentState = allClearButton.dataset.state;
+
+  if (currentState === 'clear') {  // We are switching to 'all'
+    for (const userDOMButton of userDOMButtons) {
+      const username = userDOMButton.id.replace('button-', '');
+      const userButton = new UserButton(username);
+      userButton.turnOn();
+    }
+    allClearButton.dataset.state = 'all';
+  } else if (currentState === 'all') {  // We are switching to 'clear'
+    for (const userDOMButton of userDOMButtons) {
+      const username = userDOMButton.id.replace('button-', '');
+      const userButton = new UserButton(username);
+      userButton.turnOff();
+    }
+    allClearButton.dataset.state = 'clear';
+  } else {
+    console.error('Wrong state %s', currentState);
+  }
+}

@@ -224,3 +224,19 @@ main {
   justify-self: center;
   align-self: center;
 }
+
+.all-clear-button {
+  color: rgba(39, 43, 47, 0.3) !important;
+  transition: color 0.8s;
+}
+
+.all-clear-button:hover {
+  border: none;
+  color: rgba(39, 43, 47, 0.9) !important;
+  transition: color 0.3s;
+}
+
+.all-clear-button:focus, .all-clear-button:active:focus {
+  box-shadow: none;
+}
+
