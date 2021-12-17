@@ -3,6 +3,8 @@ main {
   grid-row: 2;
   display: grid;
   grid-template-columns: 4fr 1fr;
+  justify-self: center;
+  margin-left: 10%;
 }
 
 .calendar-wrapper {
