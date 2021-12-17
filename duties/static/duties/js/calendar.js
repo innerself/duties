@@ -43,7 +43,7 @@ class UserButton {
 
       if (this.colorIsDark) {
         dateObj.style.color = '#f6f7f9';
-        dateObj.style.borderColor = '#edeeef';
+        // dateObj.style.borderColor = '#edeeef';
       }
     }
   }
@@ -53,12 +53,17 @@ class UserButton {
       const dateObj = document.getElementById(dutyDate);
       dateObj.style.backgroundColor = 'transparent';
       dateObj.classList.toggle('highlighted');
-      dateObj.style.color = '#212529';
-      dateObj.style.borderColor = 'transparent';
+      if (dateObj.classList.contains('sunday')) {
+        dateObj.style.color = 'crimson';
+        //   dateObj.style.borderColor = 'crimson';
+      } else {
+        dateObj.style.color = '#212529';
+        //   dateObj.style.borderColor = 'rgba(59, 43, 47, 0.8)';
+      }
     }
   }
 
-  get colorIsDark () {
+  get colorIsDark() {
     const darkness_margin = 186;
     const color_darkness = this.calcColorDarkness();
     return color_darkness < darkness_margin

@@ -1,3 +1,20 @@
+main {
+  /*width: 100%;*/
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.calendar-wrapper {
+  grid-column: 1;
+  /*width: 100%;*/
+  display: grid;
+  justify-self: right;
+  /*justify-content: flex-end;*/
+  margin-bottom: 100px;
+  background-color: #edeeef;
+}
+
 .header-wrapper {
   grid-row: 1;
   display: flex;
@@ -19,55 +36,50 @@
   display: flex;
   padding: 20px 0;
 }
-
 .profile-control-wrapper {
   height: 100%;
-  width: 12%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 4rem;
 }
 
-.logout-button {
+.profile-control-button {
   height: fit-content;
   color: #3b2b2f;
   /*color: #fff;*/
   background-color: rgba(0, 0, 0, 0);
   /*background-color: #61d2dc;*/
   border-color: #61d2dc;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.logout-button:focus {
+.profile-control-button:focus {
   background-color: #61d2dc;
   border-color: #61d2dc;
   box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
 }
 
-.logout-button:hover {
+.profile-control-button:hover {
   background-color: #41b3d3;
   border-color: #41b3d3;
 }
 
-.logout-button:active, .logout-button:active:focus {
+.profile-control-button:active, .profile-control-button:active:focus {
   background-color: #41b3d3;
   border-color: #41b3d3;
   box-shadow: 0 0 0 0.25rem rgb(228, 228, 228);
 }
 
-main {
-  grid-row: 2;
-  display: grid;
-  grid-template-columns: 4fr 1fr;
+.logout-button {
+
 }
 
-.calendar-wrapper {
-  grid-column: 1;
-  width: 100%;
-  display: grid;
-  justify-self: center;
-  justify-content: flex-end;
-  margin-bottom: 100px;
-  background-color: #edeeef;
+.username {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .year-num {

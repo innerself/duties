@@ -66,11 +66,13 @@ def calendar_view(request):
     calendar_data = generate_calendar([2021])
     weekheader = calendar.weekheader(3).split()
     persons = models.Profile.objects.all()
+    groups = models.Group.objects.all().order_by('name')
 
     payload = {
         'calendar': calendar_data,
         'weekheader': weekheader,
         'persons': persons,
+        'groups': groups,
     }
 
     return render(request, 'duties/calendar.html', payload)

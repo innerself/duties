@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -29,6 +29,7 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     color = models.CharField(max_length=20, default=random_color)
     duties = models.ManyToManyField(DutyDate, related_name='profiles')
+    groups_managed = models.ManyToManyField(Group, related_name='managers')
 
     def __str__(self):
         return f'Profile for user {self.user.username}'

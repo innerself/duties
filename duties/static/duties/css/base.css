@@ -1,8 +1,7 @@
 body {
+  width: 100%;
   display: grid;
   grid-template-rows: 120px auto;
   font-family: 'Open Sans', 'sans-serif';
   background-color: #edeeef;
 }
-
-
