@@ -12,7 +12,7 @@ class UserButton {
     this.button.dataset.state = 'on';
     this.indicator.style.backgroundColor = this.color;
 
-    fetch('http://127.0.0.1:8000/get/duties/'.concat(this.username).concat('/'))
+    fetch('/get/duties/'.concat(this.username).concat('/'))
       .then(response => response.json())
       .then(data => this.highlightCalendar(data));
   }
@@ -20,7 +20,7 @@ class UserButton {
   turnOff() {
     this.button.dataset.state = 'off';
     this.indicator.style.backgroundColor = 'transparent';
-    fetch('http://127.0.0.1:8000/get/duties/'.concat(this.username).concat('/'))
+    fetch('/get/duties/'.concat(this.username).concat('/'))
       .then(response => response.json())
       .then(data => this.clearCalendar(data));
   }
