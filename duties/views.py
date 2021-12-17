@@ -41,7 +41,7 @@ def login_view(request):
 
 
 @login_required
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def get_user_duties(request, username):
     user = models.Profile.objects.get(user__username=username)
     duties = [str(duty) for duty in user.duties.all()]
